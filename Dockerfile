@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY tools /app/tools
 COPY mcp_server.py /app/mcp_server.py
 
 EXPOSE 8000
 
-CMD ["python", "server.py"]
+CMD ["python", "mcp_server.py"]
