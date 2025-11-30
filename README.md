@@ -14,7 +14,6 @@ This is a simple server application built using FastMCP, designed to handle vari
 ## Requirements
 
 - Python 3.x please note, that at the time of writing Python 3.14 is not compatible with ChromaDB thus Python 3.12 is used instead
-- 
 - FastMCP
 - ChromaDB, modify `utils.config.py` for configuration of host and port as ChromaDB is supposed to be available in a separate docker container
 - OpenAI compatible LLM, modify `utils.config.py` if necessary
