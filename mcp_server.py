@@ -1,5 +1,6 @@
 from fastmcp import FastMCP
 from datetime import datetime
+from typing import Annotated
 from tools.weather.forecast import get_weather_forecast
 from tools.search.duckduckgo import web_search
 from tools.search.wiki import query_wikipedia
@@ -23,8 +24,11 @@ def execute_web_search(query: str) -> str:
         return f"Something went wrong: {e}"
     
 @mcp.tool(description="Get more information about a specific topic from Wikipedia to answer the user query")
-def search_wikipedia(topic: str, query: str, language: str="de") -> str:
-    return query_wikipedia(topic, query, language)
+def search_wikipedia(
+    topic: Annotated[str, "Topic to be searched for in Wikipedia. Since only one topic can be selected, it should be as concise as possible. For example, 'London' if you are looking for sights in London."], 
+    query: Annotated[str, "Question that the user wants to answer with the help of Wikipedia"]
+) -> str:
+    return query_wikipedia(topic, query, "de")
     
 @mcp.tool(description="Returns the current date")
 def get_current_date() -> str:
