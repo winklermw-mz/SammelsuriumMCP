@@ -15,7 +15,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 
 - Python 3.x; please note, that at the time of writing Python 3.14 is not compatible with ChromaDB thus Python 3.12 is used instead
 - FastMCP
-- ChromaDB, modify `utils.config.py` for configuration of host and port as ChromaDB is supposed to be available in a separate docker container
+- ChromaDB, modify `utils.config.py` for configuration of host and port as ChromaDB is supposed to be available in a separate docker container by default
 - OpenAI compatible LLM, modify `utils.config.py` if necessary
 - PyMuPDF
 - Other dependencies as specified in `requirements.txt`
@@ -37,7 +37,7 @@ python mcp_server.py
 
 ## Usage
 
-The MCP Server runs on `http://0.0.0.0:7999`. You can interact with the server using the provided tools.
+The MCP Server runs on `http://0.0.0.0:7999/mcp`. You can interact with the server using the provided tools.
 
 ## Docker
 
