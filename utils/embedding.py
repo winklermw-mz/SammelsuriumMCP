@@ -1,4 +1,4 @@
-import lmstudio as lms
+from openai import OpenAI
 from utils.storage import Collection
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils.logger import log_debug, log_info, log_error
@@ -39,8 +39,9 @@ def create_chunks(text: str) -> list:
 
 # creates an embedding vector for the given chunk
 def _create_embedding(chunk: str) -> list:
-    model = lms.embedding_model(EMBEDDING_MODEL)
-    return model.embed(chunk)
+    client = OpenAI(base_url="http://host.docker.internal:1234/v1", api_key="lm-studio")
+    response = client.embeddings.create(input=chunk, model=EMBEDDING_MODEL)
+    return response.data[0].embedding
 
 # returns the top-N most relevant chunks for the given user query
 def get_relevant_chunks(my_store: Collection, query: str, top_n: int, sources: list) -> list:

@@ -6,4 +6,4 @@ chromadb
 wikipedia
 colorama
 langchain-text-splitters
-lmstudio
+openai
