@@ -1,0 +1,37 @@
+# MCP Server
+
+This is a simple server application built using FastMCP, designed to handle various tools for retrieving information such as weather forecasts, web searches, Wikipedia queries, and more. Using these tools a local small LLM can be used with more recent data.
+
+## Provided Tools
+
+- `get_current_weather`: Retrieves the current weather forecast for a given location.
+- `execute_web_search`: Performs internet searches to query unknown or recent data using DuckDuckGo.
+- `search_wikipedia`: Queries Wikipedia for more detailed information on specific topics.
+- `get_current_date`: Returns the current date in a formatted string.
+- `get_current_location`: Returns the fixed location of the user (currently set to Mainz, Germany).
+
+## Requirements
+
+- Python 3.x, please note that at the time of writing this Python 3.14 is not compatible with ChromaDB thus Python 3.12 is used instead
+- FastMCP library
+- ChromaDB
+- Other dependencies as specified in `requirements.txt`
+
+## Installation
+
+1. Clone or download this repository.
+2. Ensure all required dependencies are installed.
+
+```bash
+pip install fastmcp requests ddgs beautifulsoup4 chromadb wikipedia colorama langchain-text-splitters openai
+```
+
+3. Run the server:
+
+```bash
+python mcp_server.py
+```
+
+## Usage
+
+The MCP Server runs on `http://0.0.0.0:7999`. You can interact with the server using the provided tools.
