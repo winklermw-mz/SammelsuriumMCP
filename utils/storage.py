@@ -3,7 +3,7 @@ from chromadb import Collection
 from chromadb.config import Settings
 from utils.logger import log_info, log_debug
 
-HOST_NAME = "localhost"
+HOST_NAME = "chromadb"
 PORT = 8000
 STORAGE_NAME = "my-mcp-rag"
 
