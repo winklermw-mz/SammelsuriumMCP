@@ -1,3 +1,9 @@
 fastmcp
 requests
 ddgs
+beautifulsoup4
+chromadb
+wikipedia
+colorama
+langchain-text-splitters
+lmstudio

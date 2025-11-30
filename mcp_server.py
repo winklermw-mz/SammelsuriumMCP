@@ -2,6 +2,8 @@ from fastmcp import FastMCP
 from datetime import datetime
 from tools.weather.forecast import get_weather_forecast
 from tools.search.duckduckgo import web_search
+from tools.search.wiki import query_wikipedia
+from utils.storage import get_vector_store, get_aggregated_documents
 
 
 mcp = FastMCP("My Little MCP Server")
@@ -20,6 +22,10 @@ def execute_web_search(query: str) -> str:
     except Exception as e:
         return f"Something went wrong: {e}"
     
+@mcp.tool(description="Get more information about a specific topic from Wikipedia to answer the user query")
+def search_wikipedia(topic: str, query: str, language: str="de") -> str:
+    return query_wikipedia(topic, query, language)
+    
 @mcp.tool(description="Returns the current date")
 def get_current_date() -> str:
     current_date = datetime.now().strftime("%A, %B %d, %Y")
@@ -29,5 +35,9 @@ def get_current_date() -> str:
 def get_current_location() -> str:
     return "The user is located in Mainz, Germany"
 
+
 if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=8000)
+    collection = get_vector_store()
+    get_aggregated_documents(collection)
+    
+    mcp.run(transport="http", host="0.0.0.0", port=7999)
