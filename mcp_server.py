@@ -6,9 +6,10 @@ from tools.search.duckduckgo import web_search
 from tools.search.wiki import query_wikipedia
 from tools.search.document import query_document
 from utils.storage import get_vector_store, get_aggregated_documents
+from utils.config import SERVER_IP, SERVER_PORT
 
 
-mcp = FastMCP("My Little MCP Server")
+mcp = FastMCP("MyMCP")
 
 @mcp.tool(description="Returns the current weather forecast for a given location")
 def get_current_weather(location: str) -> dict:
@@ -55,4 +56,4 @@ if __name__ == "__main__":
     collection = get_vector_store()
     get_aggregated_documents(collection)
     
-    mcp.run(transport="http", host="0.0.0.0", port=7999)
+    mcp.run(transport="http", host=SERVER_IP, port=SERVER_PORT)

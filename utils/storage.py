@@ -2,18 +2,16 @@ import chromadb
 from chromadb import Collection
 from chromadb.config import Settings
 from utils.logger import log_info, log_debug
+from utils.config import CHROMADB_HOST, CHROMADB_PORT, CHROMADB_COLLECTION
 
-HOST_NAME = "chromadb"
-PORT = 8000
-STORAGE_NAME = "my-mcp-rag"
 
 store = None
 
 # create or retrieve a persistent instance of the ChromaDB vector store
-def get_vector_store(collection: str = STORAGE_NAME, reset: bool = False) -> Collection:
+def get_vector_store(collection: str = CHROMADB_COLLECTION, reset: bool = False) -> Collection:
     global store
     if store == None or reset:
-        client = chromadb.HttpClient(host=HOST_NAME, port=PORT, settings=Settings(allow_reset=False))
+        client = chromadb.HttpClient(host=CHROMADB_HOST, port=CHROMADB_PORT, settings=Settings(allow_reset=False))
         if reset: 
             try:
                 client.delete_collection(name=collection)

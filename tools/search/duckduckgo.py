@@ -5,6 +5,7 @@ from ddgs import DDGS
 from utils.storage import get_vector_store
 from utils.embedding import extract_context, get_relevant_chunks
 from utils.logger import log_error, log_info
+from utils.config import RAG_TOP_N
 
 
 def extract_text(url: str) -> str:
@@ -32,17 +33,16 @@ def get_content(query: str, top_n: int) -> dict:
 
 def web_search(query: str) -> str:
     try:
-        top_n = 3
         collection = get_vector_store()
-        pages = get_content(query, top_n)
+        pages = get_content(query, RAG_TOP_N)
         uids = []
 
         for url, content in pages.items():
             uids.append(extract_context(collection, url, content, "de", "Web"))
         
-        chunks = get_relevant_chunks(collection, query, top_n, uids)
+        chunks = get_relevant_chunks(collection, query, RAG_TOP_N, uids)
 
-        log_info(f"Collected the {top_n} most relevant chunks for query '{query}'")
+        log_info(f"Collected the {RAG_TOP_N} most relevant chunks for query '{query}'")
         return "\n\n".join(chunks)
     except Exception as e:
         log_error(str(e))

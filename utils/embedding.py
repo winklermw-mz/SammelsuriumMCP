@@ -3,18 +3,14 @@ from utils.storage import Collection
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils.logger import log_debug, log_info, log_error
 from utils.storage import store_document, is_already_stored, execute_query
+from utils.config import LLM_URL, LLM_API_KEY, EMBEDDING_MODEL, EMBEDDING_CHUNK_SIZE, EMBEDDING_CHUNK_OVERLAP, EMBEDDING_CHUNK_THRESHOLD
 
-TOP_N = 5
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 0
-CHUNK_THRESHOLD = 150
-EMBEDDING_MODEL = "text-embedding-jina-embeddings-v2-base-de"
 
 # creates a set of chunks from the given text
 def create_chunks(text: str) -> list:
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=CHUNK_SIZE,
-        chunk_overlap=CHUNK_OVERLAP,
+        chunk_size=EMBEDDING_CHUNK_SIZE,
+        chunk_overlap=EMBEDDING_CHUNK_OVERLAP,
         separators=["\n\n", "\n", ". ", "! ", "? ", "; ", ".", "!", "?", ";", " ", ""]
     )
 
@@ -23,7 +19,7 @@ def create_chunks(text: str) -> list:
     current_chunk = ""
 
     for chunk in chunks:
-        if len(chunk) < CHUNK_THRESHOLD:
+        if len(chunk) < EMBEDDING_CHUNK_THRESHOLD:
             current_chunk = (current_chunk + " " + chunk).strip()
         else:
             if current_chunk:
@@ -39,7 +35,7 @@ def create_chunks(text: str) -> list:
 
 # creates an embedding vector for the given chunk
 def _create_embedding(chunk: str) -> list:
-    client = OpenAI(base_url="http://host.docker.internal:1234/v1", api_key="lm-studio")
+    client = OpenAI(base_url=LLM_URL, api_key=LLM_API_KEY)
     response = client.embeddings.create(input=chunk, model=EMBEDDING_MODEL)
     return response.data[0].embedding
 

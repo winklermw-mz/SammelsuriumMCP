@@ -2,6 +2,7 @@ import pymupdf
 from utils.logger import log_info, log_error
 from utils.storage import get_vector_store
 from utils.embedding import extract_context, get_relevant_chunks
+from utils.config import RAG_TOP_N
 from pathlib import Path
 
 
@@ -31,11 +32,10 @@ def query_document(filename: str, query: str) -> str:
         file = files[0]
         log_info(f"Found document '{file}'")
 
-    top_n = 3
     collection = get_vector_store()
     content = _extract_content(file)
     uid = extract_context(collection, file, content, "-", "File")
-    chunks = get_relevant_chunks(collection, query, top_n, [uid])
+    chunks = get_relevant_chunks(collection, query, RAG_TOP_N, [uid])
 
-    log_info(f"Collected the {top_n} most relevant chunks for query '{query}'")
+    log_info(f"Collected the {RAG_TOP_N} most relevant chunks for query '{query}'")
     return "\n\n".join(chunks)
