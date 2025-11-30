@@ -38,7 +38,7 @@ def query_wikipedia(topic: str, query: str, language: str) -> str:
 
         collection = get_vector_store()
         content = get_content_for_wiki_page(pages[0], language)
-        uid = extract_context(collection, pages[0], content, language, "wikipedia")
+        uid = extract_context(collection, pages[0], content, language, "Wiki")
         chunks = get_relevant_chunks(collection, query, top_n, [uid])
 
         log_info(f"Collected the {top_n} most relevant chunks for query '{query}'")

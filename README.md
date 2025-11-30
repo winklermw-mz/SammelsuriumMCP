@@ -4,9 +4,10 @@ This is a simple server application built using FastMCP, designed to handle vari
 
 ## Provided Tools
 
-- `get_current_weather`: Retrieves the current weather forecast for a given location.
 - `execute_web_search`: Performs internet searches to query unknown or recent data using DuckDuckGo.
 - `search_wikipedia`: Queries Wikipedia for more detailed information on specific topics.
+- `read_file`: Extract information from a local PDF file.
+- `get_current_weather`: Retrieves the current weather forecast for a given location.
 - `get_current_date`: Returns the current date in a formatted string.
 - `get_current_location`: Returns the fixed location of the user (currently set to Mainz, Germany).
 
@@ -15,6 +16,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 - Python 3.x, please note that at the time of writing this Python 3.14 is not compatible with ChromaDB thus Python 3.12 is used instead
 - FastMCP library
 - ChromaDB
+- PyMuPDF
 - Other dependencies as specified in `requirements.txt`
 
 ## Installation

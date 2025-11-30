@@ -1,6 +1,6 @@
 from colorama import Fore, init
 
-DEBUGGING = True
+DEBUGGING = False
 
 TYPE_DEBUG = "DEBUG"
 TYPE_INFO = "INFO"

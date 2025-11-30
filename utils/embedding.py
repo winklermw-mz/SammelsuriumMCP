@@ -52,10 +52,14 @@ def get_relevant_chunks(my_store: Collection, query: str, top_n: int, sources: l
     
     return results["documents"][0]
 
-# extracts the content from given page, find the N most relevant
+# returns a unique id for the given document
+def _get_uid(doc: str, type: str="url", lang: str="de") -> str:
+    return f"[{type}] {doc} --lang={lang}"
+
+# extracts the content from given document, find the N most relevant
 # chunks for the given user prompt and adds those as additional context to the prompt
-def extract_context(my_store: Collection, page: str, content: str, lang: str="de", prefix: str="url") -> str: 
-    uid = f"{prefix}**{lang}**{page}"
+def extract_context(my_store: Collection, doc: str, content: str, lang: str="de", prefix: str="url") -> str: 
+    uid = _get_uid(doc, prefix, lang)
     chunks = []
 
     if not is_already_stored(my_store, {"source": uid}):
@@ -64,12 +68,12 @@ def extract_context(my_store: Collection, page: str, content: str, lang: str="de
             return content
 
         chunks = create_chunks(content)
-        log_info(f"Extracted {len(chunks)} chunks from page '{page}'")
+        log_info(f"Extracted {len(chunks)} chunks from doc '{doc}'")
 
         for chunk_id, chunk in enumerate(chunks):
             embedding = _create_embedding(chunk)
-            store_document(my_store, f"{page}-{chunk_id}", chunk, embedding, {"source": uid})
+            store_document(my_store, f"{doc}-{chunk_id}", chunk, embedding, {"source": uid})
     else:
-        log_info(f"Page '{page}' has already been read")
+        log_info(f"Document '{doc}' has already been read")
 
     return uid

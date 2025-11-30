@@ -4,6 +4,7 @@ from typing import Annotated
 from tools.weather.forecast import get_weather_forecast
 from tools.search.duckduckgo import web_search
 from tools.search.wiki import query_wikipedia
+from tools.search.document import query_document
 from utils.storage import get_vector_store, get_aggregated_documents
 
 
@@ -29,6 +30,16 @@ def search_wikipedia(
     query: Annotated[str, "Question that the user wants to answer with the help of Wikipedia"]
 ) -> str:
     return query_wikipedia(topic, query, "de")
+    
+@mcp.tool(description="Load a file from the local computer to answer the user's question")
+def read_file(
+    filename: Annotated[str, "Name of the local file to be read"], 
+    query: Annotated[str, "Question that the user wants to answer with the local document"]
+) -> str:
+    try:
+        return query_document(filename, query)
+    except Exception as e:
+        return f"Something went wrong: {e}"
     
 @mcp.tool(description="Returns the current date")
 def get_current_date() -> str:

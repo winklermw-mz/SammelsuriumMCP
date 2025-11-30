@@ -38,7 +38,7 @@ def web_search(query: str) -> str:
         uids = []
 
         for url, content in pages.items():
-            uids.append(extract_context(collection, url, content, "de", "url"))
+            uids.append(extract_context(collection, url, content, "de", "Web"))
         
         chunks = get_relevant_chunks(collection, query, top_n, uids)
 
