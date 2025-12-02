@@ -46,3 +46,7 @@ The MCP Server runs on `http://0.0.0.0:7999/mcp`. You can interact with the serv
 ## Docker
 
 The server can be run in a docker container. A docker file as well as a setup script `create_docker_image.sh` is available.
+
+## Naming
+
+The name of the MCP server "Sammelsurium" is German and translates roughly to "hodgepodge", which is intended to show that it is a collection of different tools.
