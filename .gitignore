@@ -209,3 +209,4 @@ __marimo__/
 # own excludes
 settings.json
 .vscode/
+auth/

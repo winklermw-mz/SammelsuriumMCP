@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY tools /app/tools
 COPY utils /app/utils
+COPY auth /app/auth
 COPY mcp_server.py /app/mcp_server.py
 
 EXPOSE 7999

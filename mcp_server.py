@@ -5,6 +5,7 @@ from tools.weather.forecast import get_weather_forecast
 from tools.search.duckduckgo import web_search
 from tools.search.wiki import query_wikipedia
 from tools.search.document import query_document
+from tools.calendar.google import get_all_calendar_entries, get_all_available_calendars
 from utils.storage import get_vector_store, get_aggregated_documents
 from utils.config import SERVER_IP, SERVER_PORT
 
@@ -42,6 +43,23 @@ def read_file(
     except Exception as e:
         return f"Something went wrong: {e}"
     
+@mcp.tool(description="Returns a comma separated list of all available calendars.")
+def get_available_calendars() -> str:
+    try:
+        return get_all_available_calendars()
+    except Exception as e:
+        return f"Something went wrong: {e}"
+
+@mcp.tool(description="Returns all entries of a specific calendar for the next N days.")
+def get_calendar_entries(
+    calendar_name: Annotated[str, "Name of the calendar to use"], 
+    days: Annotated[int, "Number of days to look for in the given calendar"]
+) -> str:
+    try:
+        return get_all_calendar_entries(calendar_name, days)
+    except Exception as e:
+        return f"Something went wrong: {e}"
+
 @mcp.tool(description="Returns the current date")
 def get_current_date() -> str:
     current_date = datetime.now().strftime("%A, %B %d, %Y")
