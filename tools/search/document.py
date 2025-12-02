@@ -2,11 +2,9 @@ import pymupdf
 from utils.logger import log_info, log_error
 from utils.storage import get_vector_store
 from utils.embedding import extract_context, get_relevant_chunks
-from utils.config import RAG_TOP_N
+from utils.config import RAG_TOP_N, DOCUMENT_ROOT
 from pathlib import Path
 
-
-DOCUMENT_ROOT = "/documents"
 
 def _find_all_files(filename, search_path) -> list:
     root = Path(search_path)

@@ -16,3 +16,5 @@ CHROMADB_PORT = 8000
 CHROMADB_COLLECTION = "my-mcp-rag"
 
 RAG_TOP_N = 3
+
+DOCUMENT_ROOT = "/documents"
