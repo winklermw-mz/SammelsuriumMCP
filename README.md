@@ -7,9 +7,13 @@ This is a simple server application built using FastMCP, designed to handle vari
 - `execute_web_search`: Performs internet searches to query unknown or recent data using DuckDuckGo.
 - `search_wikipedia`: Queries Wikipedia for more detailed information on specific topics.
 - `read_file`: Extract information from a local PDF file.
+- `get_available_calendars`: Lists all available Google calendars. (*)
+- `get_calendar_entries`: Lists all calendar entries for a specific calendar for the next N days. (*)
 - `get_current_weather`: Retrieves the current weather forecast for a given location.
 - `get_current_date`: Returns the current date in a formatted string.
 - `get_current_location`: Returns the fixed location of the user (currently set to Mainz, Germany).
+
+(\*) Please note, that you need to create a valid Google access token before using the tool for the first time, see <https://developers.google.com/identity/protocols/oauth2?hl=en> for details.
 
 ## Requirements
 
