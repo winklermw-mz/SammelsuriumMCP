@@ -1,6 +1,6 @@
 # MCP Server
 
-This is a simple server application built using FastMCP, designed to handle various tools for retrieving information such as weather forecasts, web searches, Wikipedia queries, and more. Using these tools a local small LLM can be used with more recent data.
+This is a simple server application built using FastMCP, designed to handle various tools for retrieving information such as weather forecasts, web searches, Wikipedia queries, access to calendars, and more. Using these tools a local small LLM can be used with more recent data.
 
 ## Provided Tools
 
@@ -13,7 +13,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 - `get_current_date`: Returns the current date in a formatted string.
 - `get_current_location`: Returns the fixed location of the user (currently set to Mainz, Germany).
 
-(\*) Please note, that you need to create a valid Google access token before using the tool for the first time, see <https://developers.google.com/identity/protocols/oauth2?hl=en> for details.
+(\*) Please note, that you need to create a valid Google access token before using the tool for the first time, see <https://developers.google.com/identity/protocols/oauth2?hl=en> for details. If you run this server in a Docker container you need to create the token on the host and copy it onto the image.
 
 ## Requirements
 
