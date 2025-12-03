@@ -22,3 +22,5 @@ DOCUMENT_ROOT = "/documents"
 GOOGLE_SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
 GOOGLE_TOKEN = "auth/token.json"
 GOOGLE_CREDENTIALS = "auth/credentials.json"
+
+MY_LOCATION = "Mainz, Germany"

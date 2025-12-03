@@ -7,7 +7,7 @@ from tools.search.wiki import query_wikipedia
 from tools.search.document import query_document
 from tools.calendar.google import get_all_calendar_entries, get_all_available_calendars
 from utils.storage import get_vector_store, get_aggregated_documents
-from utils.config import SERVER_IP, SERVER_PORT
+from utils.config import SERVER_IP, SERVER_PORT, MY_LOCATION
 
 
 mcp = FastMCP("MyMCP")
@@ -67,7 +67,7 @@ def get_current_date() -> str:
 
 @mcp.tool(description="Returns the current location of the user")
 def get_current_location() -> str:
-    return "The user is located in Mainz, Germany"
+    return f"The user is located in {MY_LOCATION}"
 
 
 if __name__ == "__main__":
