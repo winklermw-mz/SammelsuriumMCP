@@ -207,6 +207,6 @@ marimo/_lsp/
 __marimo__/
 
 # own excludes
-settings.json
 .vscode/
-auth/
+auth/token.json
+auth/credentials.json
