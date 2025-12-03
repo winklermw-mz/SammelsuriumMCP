@@ -4,7 +4,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 
 ## Provided Tools
 
-- `execute_web_search`: Performs internet searches to query unknown or recent data using DuckDuckGo.
+- `search_web`: Performs internet searches to query unknown or recent data using DuckDuckGo.
 - `search_wikipedia`: Queries Wikipedia for more detailed information on specific topics.
 - `read_file`: Extract information from a local PDF file.
 - `get_available_calendars`: Lists all available Google calendars. (*)

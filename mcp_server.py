@@ -20,7 +20,7 @@ def get_current_weather(location: str) -> dict:
         return {"error": f"Something went wrong: {e}"}
 
 @mcp.tool(description="To query unknown or recent data this tool can be used to search the internet")
-def execute_web_search(query: str) -> str:
+def search_web(query: str) -> str:
     try:
         return web_search(query)
     except Exception as e:
