@@ -2,7 +2,6 @@ import os
 from utils.config import GOOGLE_TOKEN, GOOGLE_CREDENTIALS, GOOGLE_SCOPES
 from datetime import datetime, timedelta, timezone
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 
@@ -12,10 +11,7 @@ def get_google_service():
         creds = Credentials.from_authorized_user_file(GOOGLE_TOKEN, GOOGLE_SCOPES)
 
     if not creds or not creds.valid:
-        flow = InstalledAppFlow.from_client_secrets_file(GOOGLE_CREDENTIALS, GOOGLE_SCOPES)
-        creds = flow.run_local_server(port=0)
-        with open(GOOGLE_TOKEN, "w") as token:
-            token.write(creds.to_json())
+        raise Exception("Credentials for access to Google Calendar are not valid.")
 
     return build("calendar", "v3", credentials=creds)
 
