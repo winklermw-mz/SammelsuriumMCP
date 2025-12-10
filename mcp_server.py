@@ -34,7 +34,7 @@ def search_wikipedia(
     return query_wikipedia(topic, query, "de")
     
 @mcp.tool(description="Load a file from the local computer to answer the user's question")
-def read_file(
+def read_pdf_file(
     filename: Annotated[str, "Name of the local file to be read"], 
     query: Annotated[str, "Question that the user wants to answer with the local document"]
 ) -> str:
