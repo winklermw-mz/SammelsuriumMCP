@@ -209,3 +209,4 @@ __marimo__/
 # own excludes
 .vscode/
 auth/
+client.py
