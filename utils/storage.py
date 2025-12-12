@@ -37,7 +37,7 @@ def execute_query(my_store: Collection, embedding: list, top_n: int, where: dict
     return my_store.query(query_embeddings=[embedding], n_results=top_n, where=where)
 
 # returns the number of already indexed chunks per source
-def get_aggregated_documents(my_store: Collection) -> list:
+def get_aggregated_documents(my_store: Collection):
     limit = 1000
     offset = 0
     categories = {}
@@ -52,6 +52,6 @@ def get_aggregated_documents(my_store: Collection) -> list:
                 categories[meta["source"]] += 1
         offset += limit
 
-    log_info(f"Already stored {len(categories)} files and pages")
+    log_info(f"Already stored {len(categories)} files and/or pages in ChromaDB")
     for category, count in categories.items():
         log_debug(f"'{category}' with {count} chunks")

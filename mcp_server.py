@@ -8,6 +8,8 @@ from tools.search.document import query_document
 from tools.calendar.google import get_all_calendar_entries, get_all_available_calendars
 from utils.storage import get_vector_store, get_aggregated_documents
 from utils.config import SERVER_IP, SERVER_PORT, MY_LOCATION
+from utils.logger import log_error
+from utils.selfcheck import perform_checkup
 
 
 mcp = FastMCP("MyMCP")
@@ -71,6 +73,9 @@ def get_current_location() -> str:
 
 
 if __name__ == "__main__":
+    if not perform_checkup():
+        log_error("Self-check was not successful, not all services are available currently")
+    
     collection = get_vector_store()
     get_aggregated_documents(collection)
     
