@@ -15,7 +15,7 @@ def check_url(service: str, url: str):
 
 def perform_checkup() -> bool:
     return check_url("ChromaDB", f"http://{CHROMADB_HOST}:{CHROMADB_PORT}/api/v2/heartbeat") \
-        and check_url("LM Studio", f"{LLM_URL}/models")
+        and check_url("LM Studio", f"{LLM_URL}/heartbeat")
 
 if __name__ == "__main__":
     perform_checkup()

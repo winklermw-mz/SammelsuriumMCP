@@ -1,4 +1,5 @@
-from openai import OpenAI
+import requests
+import json
 from utils.storage import Collection
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils.logger import log_debug, log_info, log_error
@@ -35,9 +36,12 @@ def create_chunks(text: str) -> list:
 
 # creates an embedding vector for the given chunk
 def _create_embedding(chunk: str) -> list:
-    client = OpenAI(base_url=LLM_URL, api_key=LLM_API_KEY)
-    response = client.embeddings.create(input=chunk, model=EMBEDDING_MODEL)
-    return response.data[0].embedding
+    response = requests.post(
+        f"{LLM_URL}/embedding", 
+        headers={"Content-Type": "application/json"}, 
+        data=json.dumps(chunk)
+    )
+    return json.loads(response.text)
 
 # returns the top-N most relevant chunks for the given user query
 def get_relevant_chunks(my_store: Collection, query: str, top_n: int, sources: list) -> list:

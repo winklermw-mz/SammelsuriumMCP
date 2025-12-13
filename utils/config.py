@@ -3,7 +3,7 @@ DEBUG = False
 SERVER_IP = "0.0.0.0"
 SERVER_PORT = 8002
 
-LLM_URL = "http://host.docker.internal:1234/v1"
+LLM_URL = "http://host.docker.internal:8001"
 LLM_API_KEY = "lm-studio"
 
 EMBEDDING_MODEL = "text-embedding-jina-embeddings-v2-base-de"

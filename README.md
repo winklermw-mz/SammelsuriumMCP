@@ -30,7 +30,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 2. Ensure all required dependencies are installed.
 
 ```bash
-pip install fastmcp requests ddgs beautifulsoup4 chromadb wikipedia colorama langchain-text-splitters openai pymupdf google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2
+pip install fastmcp requests ddgs beautifulsoup4 chromadb wikipedia colorama langchain-text-splitters pymupdf google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2
 ```
 
 3. Run the server:
