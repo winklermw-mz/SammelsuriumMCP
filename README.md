@@ -41,7 +41,7 @@ python mcp_server.py
 
 ## Usage
 
-The MCP Server runs on `http://0.0.0.0:7999/mcp`. You can interact with the server using the provided tools.
+The MCP Server runs on `http://0.0.0.0:8002/mcp`. You can interact with the server using the provided tools.
 
 ## Docker
 

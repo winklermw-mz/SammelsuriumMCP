@@ -1,7 +1,7 @@
 DEBUG = False
 
 SERVER_IP = "0.0.0.0"
-SERVER_PORT = 7999
+SERVER_PORT = 8002
 
 LLM_URL = "http://host.docker.internal:1234/v1"
 LLM_API_KEY = "lm-studio"

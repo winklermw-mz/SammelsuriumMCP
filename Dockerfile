@@ -14,6 +14,6 @@ COPY utils /app/utils
 COPY auth /app/auth
 COPY mcp_server.py /app/mcp_server.py
 
-EXPOSE 7999
+EXPOSE 8002
 
 CMD ["python", "mcp_server.py"]
