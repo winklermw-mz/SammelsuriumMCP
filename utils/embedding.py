@@ -4,7 +4,7 @@ from utils.storage import Collection
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils.logger import log_debug, log_info, log_error
 from utils.storage import store_document, is_already_stored, execute_query
-from utils.config import LLM_URL, LLM_API_KEY, EMBEDDING_MODEL, EMBEDDING_CHUNK_SIZE, EMBEDDING_CHUNK_OVERLAP, EMBEDDING_CHUNK_THRESHOLD
+from utils.config import LLM_URL, EMBEDDING_MODEL, EMBEDDING_CHUNK_SIZE, EMBEDDING_CHUNK_OVERLAP, EMBEDDING_CHUNK_THRESHOLD
 
 
 # creates a set of chunks from the given text
@@ -37,9 +37,14 @@ def create_chunks(text: str) -> list:
 # creates an embedding vector for the given chunk
 def _create_embedding(chunk: str) -> list:
     response = requests.post(
-        f"{LLM_URL}/embedding", 
+        f"{LLM_URL}/v1/embeddings", 
         headers={"Content-Type": "application/json"}, 
-        data=json.dumps(chunk)
+        data=json.dumps(
+            {
+                "model": EMBEDDING_MODEL,
+                "input": chunk
+            }
+        )
     )
     return json.loads(response.text)
 
