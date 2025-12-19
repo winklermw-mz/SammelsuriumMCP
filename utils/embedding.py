@@ -60,7 +60,7 @@ def get_relevant_chunks(my_store: Collection, query: str, top_n: int, sources: l
 
 # returns a unique id for the given document
 def _get_uid(doc: str, type: str="url", lang: str="de") -> str:
-    return f"[{type}] {doc} --lang={lang}"
+    return f"[{type}][{lang}] {doc}"
 
 # extracts the content from given document, find the N most relevant
 # chunks for the given user prompt and adds those as additional context to the prompt
@@ -88,6 +88,7 @@ def extract_context(my_store: Collection, doc: str, content: str, lang: str="de"
                     "source": uid, 
                     "timestamp": timestamp,
                     "type": prefix.lower(),
+                    "language": lang,
                 }
             )
     else:
