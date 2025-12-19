@@ -14,7 +14,7 @@ def _extract_content(filename: str) -> str:
     doc = pymupdf.open(filename)
     text = ""
     for page in doc:
-        text += page.get_text()
+        text += str(page.get_text())
     return text
 
 def query_document(filename: str, query: str) -> str:

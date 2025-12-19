@@ -1,5 +1,6 @@
 import requests
 import json
+from datetime import datetime
 from utils.storage import Collection
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils.logger import log_debug, log_info, log_error
@@ -77,7 +78,8 @@ def extract_context(my_store: Collection, doc: str, content: str, lang: str="de"
 
         for chunk_id, chunk in enumerate(chunks):
             embedding = _create_embedding(chunk)
-            store_document(my_store, f"{doc}-{chunk_id}", chunk, embedding, {"source": uid})
+            timestamp = int(datetime.now().timestamp())
+            store_document(my_store, f"{doc}-{chunk_id}", chunk, embedding, {"source": uid, "timestamp": timestamp})
     else:
         log_info(f"Document '{doc}' has already been read")
 
