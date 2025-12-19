@@ -27,4 +27,5 @@ MY_LOCATION = "Mainz, Germany"
 GENAI_KNOWLEDGE_BASE = [
     "Unlocking Data with Generative AI and RAG.pdf",
     "Mastering RAG.pdf",
+    "A Practical Approach to Retrieval Augmented Generation Systems.pdf",
 ]
