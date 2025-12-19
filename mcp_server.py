@@ -6,6 +6,7 @@ from tools.search.duckduckgo import web_search
 from tools.search.wiki import query_wikipedia
 from tools.search.document import query_document
 from tools.calendar.google import get_all_calendar_entries, get_all_available_calendars
+from tools.knowledge.genai import query_genai_knowledge_base
 from utils.storage import get_vector_store, get_aggregated_documents
 from utils.config import SERVER_IP, SERVER_PORT, MY_LOCATION
 from utils.logger import log_error
@@ -42,6 +43,15 @@ def read_pdf_file(
 ) -> str:
     try:
         return query_document(filename, query)
+    except Exception as e:
+        return f"Something went wrong: {e}"
+
+@mcp.tool(description="Uses the GenAI knowledge base to answer the user's question. The knowledge base contains detailed information about GenAI in general, Retrieval Augmented Generation and the implemention in Python.")
+def ask_genai_knowledge_base(
+    user_question: Annotated[str, "The user's question"]
+) -> str:
+    try:
+        return query_genai_knowledge_base(user_question)
     except Exception as e:
         return f"Something went wrong: {e}"
     

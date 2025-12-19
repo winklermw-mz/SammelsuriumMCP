@@ -12,6 +12,7 @@ This is a simple server application built using FastMCP, designed to handle vari
 - `get_current_weather`: Retrieves the current weather forecast for a given location.
 - `get_current_date`: Returns the current date in a formatted string.
 - `get_current_location`: Returns the fixed location of the user (currently set to Mainz, Germany).
+- `ask_genai_knowledge_base`: Passes the user's question to the RAG knowledge base.
 
 (\*) Please note, that you need to create a valid Google access token before using the tool for the first time, see <https://developers.google.com/identity/protocols/oauth2?hl=en> for details. If you run this server in a Docker container you need to create the token on the host and copy it onto the image.
 

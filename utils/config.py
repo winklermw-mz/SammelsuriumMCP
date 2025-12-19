@@ -23,3 +23,8 @@ GOOGLE_TOKEN = "auth/token.json"
 GOOGLE_CREDENTIALS = "auth/credentials.json"
 
 MY_LOCATION = "Mainz, Germany"
+
+GENAI_KNOWLEDGE_BASE = [
+    "Unlocking Data with Generative AI and RAG.pdf",
+    "Mastering RAG.pdf",
+]

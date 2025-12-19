@@ -18,6 +18,14 @@ def _extract_content(filename: str) -> str:
     return text
 
 def query_document(filename: str, query: str) -> str:
+    collection = get_vector_store()
+    uid = read_document(collection, filename)
+    chunks = get_relevant_chunks(collection, query, RAG_TOP_N, [uid])
+
+    log_info(f"Collected the {RAG_TOP_N} most relevant chunks for query '{query}'")
+    return "\n\n".join(chunks)
+
+def read_document(collection, filename: str) -> str:
     files = _find_all_files(filename, DOCUMENT_ROOT)
 
     if len(files) == 0:
@@ -30,10 +38,5 @@ def query_document(filename: str, query: str) -> str:
         file = files[0]
         log_info(f"Found document '{file}'")
 
-    collection = get_vector_store()
     content = _extract_content(file)
-    uid = extract_context(collection, file, content, "-", "File")
-    chunks = get_relevant_chunks(collection, query, RAG_TOP_N, [uid])
-
-    log_info(f"Collected the {RAG_TOP_N} most relevant chunks for query '{query}'")
-    return "\n\n".join(chunks)
+    return extract_context(collection, file, content, "-", "File")
