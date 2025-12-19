@@ -79,7 +79,17 @@ def extract_context(my_store: Collection, doc: str, content: str, lang: str="de"
         for chunk_id, chunk in enumerate(chunks):
             embedding = _create_embedding(chunk)
             timestamp = int(datetime.now().timestamp())
-            store_document(my_store, f"{doc}-{chunk_id}", chunk, embedding, {"source": uid, "timestamp": timestamp})
+            store_document(
+                my_store, 
+                f"{doc}-{chunk_id}", 
+                chunk, 
+                embedding, 
+                {
+                    "source": uid, 
+                    "timestamp": timestamp,
+                    "type": prefix.lower(),
+                }
+            )
     else:
         log_info(f"Document '{doc}' has already been read")
 
